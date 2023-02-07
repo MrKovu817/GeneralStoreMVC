@@ -3,21 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using GSMVC.Data;
-using GSMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-{
     [Route("[controller]")]
     public class CustomerController : Controller
     {
-        private readonly ILogger<CustomerController> _logger;
-
-        public CustomerController(ILogger<CustomerController> logger)
-        {
-            _logger = logger;
-        }
 
         private readonly GeneralStoreDbContext _ctx;
         public CustomerController(GeneralStoreDbContext ctx)
@@ -163,4 +154,3 @@ using Microsoft.Extensions.Logging;
             return Redirect("/Customer");
         }
     }
-}

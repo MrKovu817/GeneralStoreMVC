@@ -3,22 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using GSMVC.Data;
-using GSMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-{
+
     [Route("[controller]")]
     public class ProductController : Controller
     {
-        private readonly ILogger<ProductController> _logger;
-
-        public ProductController(ILogger<ProductController> logger)
-        {
-            _logger = logger;
-        }
 
         private readonly GeneralStoreDbContext _ctx;
 
@@ -182,5 +174,9 @@ using Microsoft.Extensions.Logging;
             await _ctx.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        private bool ProductExists(int id)
+        {
+            return _ctx.Products.Any(e => e.Id == id);
+        }
     }
-}

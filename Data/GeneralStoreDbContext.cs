@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using GSMVC.Models;
 using Microsoft.EntityFrameworkCore;
 
 public partial class GeneralStoreDbContext : DbContext
 {
-    public GeneralStoreDbContext()
-    {
-    }
-
     public GeneralStoreDbContext(DbContextOptions<GeneralStoreDbContext> options)
         : base(options)
     {

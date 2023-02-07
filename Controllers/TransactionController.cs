@@ -5,17 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
-{
     [Route("[controller]")]
     public class TransactionController : Controller
     {
-        private readonly ILogger<TransactionController> _logger;
-
-        public TransactionController(ILogger<TransactionController> logger)
-        {
-            _logger = logger;
-        }
 
         private readonly GeneralStoreDbContext _ctx;
         public TransactionController(GeneralStoreDbContext ctx)
@@ -168,4 +163,3 @@ using Microsoft.Extensions.Logging;
             return _ctx.Transactions.Any(e => e.Id == id);
         }
     }
-}

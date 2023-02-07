@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using GSMVC.Models;
 
 public class HomeController : Controller
 {

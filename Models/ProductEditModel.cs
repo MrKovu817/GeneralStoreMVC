@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-{
+
     public class ProductEditModel
     {
         public int Id { get; set; }
@@ -11,4 +11,3 @@ using System.Threading.Tasks;
         public int QuantityInStock { get; set; }
         public double Price { get; set; }
     }
-}
