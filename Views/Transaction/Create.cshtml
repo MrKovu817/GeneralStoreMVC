@@ -1,0 +1,23 @@
+@model TransactionCreateModel
+
+<div class="container">
+    <form method="post" asp-action="Create">
+        <div class="form-group">
+            <label for="ProductId">ProductId</label>
+            <input type="ProductId" class="form-control" name="ProductId" placeholder="product" />
+        </div>
+        <div class="form-group">
+            <label for="CustomerId">CustomerId</label>
+            <input type="CustomerId" class="form-control" name="CustomerId" placeholder="customer" />
+        </div>
+        <div class="form-group">
+            <label for="Quantity">Quantity</label>
+            <input type="Quantity" class="form-control" name="Quantity" placeholder="quantity" />
+        </div>
+        <div class="form-group">
+            <label for="DateOfTransaction">DateOfTransaction</label>
+            <input type="DateOfTransaction" class="form-control" name="DateOfTransaction" placeholder="date" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-2">Create</button>
+    </form>
+</div>

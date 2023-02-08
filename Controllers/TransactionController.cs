@@ -17,11 +17,12 @@ using Microsoft.EntityFrameworkCore;
         {
             _ctx = ctx;
         }
-
+        
+        [HttpGet,Route("Transaction")]
         public async Task<IActionResult> Index()
         {
-            var GeneralStoreDbContext = _ctx.Transactions.Include(t => t.Customer).Include(t => t.Product);
-            return View(await GeneralStoreDbContext.ToListAsync());
+            var GeneralStoreDbContext = _ctx.Transactions.Include(t => t.Customer).Include(t => t.Product).ToListAsync();
+            return View(await GeneralStoreDbContext);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -31,6 +32,7 @@ using Microsoft.EntityFrameworkCore;
         }
 
         // GET: Transaction/Details/
+        [HttpGet,Route("Transaction/Details/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,6 +53,7 @@ using Microsoft.EntityFrameworkCore;
         }
 
         // GET: Transaction/Create
+        [HttpGet,Route("Transaction/Create")]
         public async Task<IActionResult> Create()
         {
             ViewData["CustomerId"] = new SelectList(_ctx.Customers, "Id", "Email");
@@ -59,7 +62,7 @@ using Microsoft.EntityFrameworkCore;
         }
 
         // POST: Transaction/Create
-        [HttpPost]
+        [HttpPost,Route("Transaction/Create/")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ProductId,CustomerId,Quantity,DateOfTransaction")] Transaction transaction)
         {
@@ -75,6 +78,7 @@ using Microsoft.EntityFrameworkCore;
         }
 
         // GET: Transaction/Edit/
+        [HttpGet,Route("Transaction/Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,7 +97,7 @@ using Microsoft.EntityFrameworkCore;
         }
 
         // POST: Transaction/Edit/
-        [HttpPost]
+        [HttpPost,Route("Transaction/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,CustomerId,Quantity,DateOfTransaction")] Transaction transaction)
         {
@@ -128,6 +132,7 @@ using Microsoft.EntityFrameworkCore;
         }
 
         // GET: Transaction/Delete/
+        [HttpGet,Route("Transaction/Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -19,6 +19,7 @@ using Microsoft.Extensions.Logging;
             _ctx = ctx;
         }
 
+        [HttpGet,Route("Product")] 
         public async Task<IActionResult> Index()
         {
             var products = await _ctx
@@ -40,7 +41,7 @@ using Microsoft.Extensions.Logging;
             return View("Error!");
         }
 
-        [HttpPost]
+        [HttpPost,Route("Product/Create")] 
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,QuantityInStock,Price")] ProductCreateModel model)
         {
@@ -58,6 +59,7 @@ using Microsoft.Extensions.Logging;
         return View(model);
         }
 
+        [HttpPost,Route("Product/Details/{id}")] 
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -81,6 +83,7 @@ using Microsoft.Extensions.Logging;
             return View(product);
         }
 
+        [HttpPost,Route("Product/Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -105,7 +108,7 @@ using Microsoft.Extensions.Logging;
             return View(product);
         }
 
-        [HttpPost]
+        [HttpPost,Route("Product/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Name,QuantityInStock,Price")] ProductEditModel model)
         {
@@ -140,6 +143,7 @@ using Microsoft.Extensions.Logging;
             return View(product);
         }
 
+        [HttpGet,Route("Product/Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

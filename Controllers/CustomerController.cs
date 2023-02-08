@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
         {
             _ctx = ctx;
         }
-
+        [HttpGet,Route("Customer")]
         public async Task<IActionResult> Index()
         {
             var customers = _ctx.Customers.Select(customer => new CustomerIndexModel
@@ -27,18 +27,20 @@ using Microsoft.Extensions.Logging;
             return View(customers);
         }
 
+        [HttpGet,Route("Customer/Error")] 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View("Error!");
         }
 
+        [HttpPost,Route("Customer/Create")] 
         public async Task<IActionResult> Create()
         {
             return View();
         }
         
-        [HttpPost]
+        [HttpPost,Route("Customer/Create")] 
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CustomerCreateModel model)
         {
@@ -60,6 +62,7 @@ using Microsoft.Extensions.Logging;
             return View(model);
         }
 
+        [HttpGet,Route("Customer/{id}")] 
         public async Task<IActionResult> Details(int? id)
         {
             if(id == null)
@@ -80,7 +83,7 @@ using Microsoft.Extensions.Logging;
             return View(model);
         }
 
-        [HttpGet]
+        [HttpGet, Route("Customer/Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -100,7 +103,8 @@ using Microsoft.Extensions.Logging;
             };
             return View(model);
         }
-        [HttpPost]
+
+        [HttpPost, Route("Customer/Edit/{id}")]
         public async Task<IActionResult> Edit(int id, CustomerEditModel model)
         {
             var customer = _ctx.Customers.Find(id);
@@ -120,7 +124,7 @@ using Microsoft.Extensions.Logging;
             return View(model);
         }
 
-        [HttpGet]
+        [HttpGet,Route("Customer/Delete/{id}")]  
         public async Task<IActionResult> Delete(int id)
         {
             if(id == null)
@@ -141,7 +145,8 @@ using Microsoft.Extensions.Logging;
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost,Route("Customer/Delete/{id}")] 
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int? id, CustomerDetailModel model)
         {
             var customer = _ctx.Customers.Find(id);

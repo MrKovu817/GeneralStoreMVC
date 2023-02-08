@@ -1,0 +1,30 @@
+@model IEnumerable<Transaction>
+
+<h1 class="text-center">All Transactions</h1>
+<a href="/transaction/create" class="text-primary">Create a transaction</a>
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>ProductId</th>
+            <th>TransactionId</th>
+            <th>Quantity</th>
+            <th>DateOfTransaction</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.Id</td>
+                <td>@transaction.ProductId</td>
+                <td>@transaction.CustomerId</td>
+                <td>@transaction.Quantity</td>
+                <td>@transaction.DateOfTransaction</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
